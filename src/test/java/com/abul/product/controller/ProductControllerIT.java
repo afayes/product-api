@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for {@link ProductController}.
  * NOTE: Since we do not control the external API, minimal assumptions have been about the data to make the tests
  * robust. During testing the external API went down so integration tests started failing.
- *
+ * <p>
  * More comprehensive unit tests can be found at {@link com.abul.product.service.ProductServiceTest}
  */
 @ExtendWith(SpringExtension.class)
