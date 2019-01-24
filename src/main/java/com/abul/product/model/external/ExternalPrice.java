@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * External price model.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,5 +25,8 @@ public class ExternalPrice {
 
     private String currency;
 
+    /**
+     * The value of this field can be a String or an object. Using JsonNode to allow custom parsing.
+     */
     private JsonNode now;
 }

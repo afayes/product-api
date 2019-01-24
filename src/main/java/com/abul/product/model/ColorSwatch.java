@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * External color swatch model.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,10 +19,4 @@ public class ColorSwatch {
     private String rgbColor;
 
     private String skuid;
-
-    /**
-     *  * color<String>
-     *  * rgbColor<String> which is an RGB  representation of the basicColor in a six digit hexadecimal format, e.g. “F0A1C2”.
-     *  * skuid<String>
-     */
 }

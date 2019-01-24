@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+/**
+ * Application entry point.
+ */
 @SpringBootApplication
 @EnableFeignClients(basePackages = {"com.abul.product.service"})
 public class ProductApiApplication {

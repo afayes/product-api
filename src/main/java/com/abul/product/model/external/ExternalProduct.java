@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * External product model.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

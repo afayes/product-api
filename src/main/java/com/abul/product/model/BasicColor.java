@@ -4,6 +4,9 @@ import lombok.Getter;
 
 import java.util.Arrays;
 
+/**
+ * Basic color enum with RGB mapping.
+ */
 public enum BasicColor {
     RED("FF0000"),
     PINK("FFC0CB"),

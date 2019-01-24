@@ -26,6 +26,10 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Unit tests for {@link ProductController}.
+ * NOTE: More comprehensive unit tests can be found at {@link com.abul.product.service.ProductServiceTest}.
+ */
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ProductController.class)
 class ProductControllerTest {

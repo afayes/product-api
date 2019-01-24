@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * External color swatch model.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

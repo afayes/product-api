@@ -4,6 +4,9 @@ import lombok.Getter;
 
 import java.util.Arrays;
 
+/**
+ * Price label type enum.
+ */
 public enum PriceLabelType {
     SHOW_WAS_NOW("ShowWasNow"),
     SHOW_WAS_THEN_NOW("ShowWasThenNow"),

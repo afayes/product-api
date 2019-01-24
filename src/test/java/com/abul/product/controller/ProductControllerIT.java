@@ -30,7 +30,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
+/**
+ * Integration tests for {@link ProductController}.
+ * NOTE: Since we do not control the external API, minimal assumptions have been about the data to make the tests
+ * robust. During testing the external API went down so integration tests started failing.
+ *
+ * More comprehensive unit tests can be found at {@link com.abul.product.service.ProductServiceTest}
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc

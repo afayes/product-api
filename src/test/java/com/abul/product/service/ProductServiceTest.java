@@ -23,6 +23,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+/**
+ * Unit tests for {@link ProductService}.
+ * NOTE: A unit test has been written for each behaviour in the test specification.
+ */
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
 

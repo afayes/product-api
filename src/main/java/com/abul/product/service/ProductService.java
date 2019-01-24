@@ -6,7 +6,6 @@ import com.abul.product.model.external.ExternalPrice;
 import com.abul.product.model.external.ExternalProduct;
 import com.abul.product.model.external.ExternalProducts;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +16,9 @@ import java.util.stream.Collectors;
 
 import static com.abul.product.model.external.ExternalPrice.NOW_PRICE_TO_FIELD_NAME;
 
+/**
+ * Product service.
+ */
 @Service
 public class ProductService {
 
@@ -30,17 +32,22 @@ public class ProductService {
 
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".00");
 
-    private static final DecimalFormat INTEGER_FORMAT = new DecimalFormat("");
+    private static final DecimalFormat INTEGER_FORMAT = new DecimalFormat();
 
     private final ExternalProductApiClient externalProductApiClient;
 
-    private final ObjectMapper objectMapper;
 
     public ProductService(final ExternalProductApiClient externalProductApiClient) {
         this.externalProductApiClient = externalProductApiClient;
-        objectMapper = new ObjectMapper();
     }
 
+    /**
+     * Get products that have a price reduction and show highest product with highest reduction first.
+     *
+     * @param priceLabel the price label type
+     * @return products
+     * @throws {@link ProductServiceException} if unable to retrieve products from remote API
+     */
     public List<Product> getProducts(final Optional<PriceLabelType> priceLabel) {
         final ExternalProducts products;
         try {
