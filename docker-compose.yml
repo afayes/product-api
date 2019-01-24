@@ -1,0 +1,10 @@
+version: '2'
+services:
+  product-api:
+      image: afayes/product-api
+      container_name: product-api
+      ports:
+        - "8080:8080"
+
+
+
