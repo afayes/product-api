@@ -1,4 +1,4 @@
-package com.abul.productapi.model;
+package com.abul.product.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

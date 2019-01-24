@@ -1,12 +1,12 @@
-package com.abul.productapi.service;
+package com.abul.product.service;
 
-import com.abul.productapi.model.BasicColor;
-import com.abul.productapi.model.PriceLabelType;
-import com.abul.productapi.model.Product;
-import com.abul.productapi.model.external.ExternalColorSwatch;
-import com.abul.productapi.model.external.ExternalPrice;
-import com.abul.productapi.model.external.ExternalProduct;
-import com.abul.productapi.model.external.ExternalProducts;
+import com.abul.product.model.BasicColor;
+import com.abul.product.model.PriceLabelType;
+import com.abul.product.model.Product;
+import com.abul.product.model.external.ExternalColorSwatch;
+import com.abul.product.model.external.ExternalPrice;
+import com.abul.product.model.external.ExternalProduct;
+import com.abul.product.model.external.ExternalProducts;
 import com.fasterxml.jackson.databind.node.TextNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

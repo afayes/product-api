@@ -1,4 +1,4 @@
-package com.abul.productapi.model.external;
+package com.abul.product.model.external;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;

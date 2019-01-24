@@ -1,10 +1,10 @@
-package com.abul.productapi.service;
+package com.abul.product.service;
 
-import com.abul.productapi.model.*;
-import com.abul.productapi.model.external.ExternalColorSwatch;
-import com.abul.productapi.model.external.ExternalPrice;
-import com.abul.productapi.model.external.ExternalProduct;
-import com.abul.productapi.model.external.ExternalProducts;
+import com.abul.product.model.*;
+import com.abul.product.model.external.ExternalColorSwatch;
+import com.abul.product.model.external.ExternalPrice;
+import com.abul.product.model.external.ExternalProduct;
+import com.abul.product.model.external.ExternalProducts;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.abul.productapi.model.external.ExternalPrice.NOW_PRICE_TO_FIELD_NAME;
+import static com.abul.product.model.external.ExternalPrice.NOW_PRICE_TO_FIELD_NAME;
 
 @Service
 public class ProductService {
@@ -114,9 +114,8 @@ public class ProductService {
                 return String.format(PERCENT_DISCOUNT_FORMAT, extractPercentageDiscount(externalPrice), nowPrice);
 
             default:
+                throw new IllegalStateException("Label type " + labelType + " not recognised");
         }
-
-        return null;
     }
 
     private String extractFormattedNowPrice(final ExternalPrice externalPrice) {
