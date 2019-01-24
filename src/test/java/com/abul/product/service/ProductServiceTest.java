@@ -3,6 +3,7 @@ package com.abul.product.service;
 import com.abul.product.model.BasicColor;
 import com.abul.product.model.PriceLabelType;
 import com.abul.product.model.Product;
+import com.abul.product.model.Products;
 import com.abul.product.model.external.ExternalColorSwatch;
 import com.abul.product.model.external.ExternalPrice;
 import com.abul.product.model.external.ExternalProduct;
@@ -75,10 +76,10 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.empty());
+        final Products products = productService.getProducts(Optional.empty());
 
-        assertEquals(1, products.size(), "Size should match");
-        assertEquals(withReductionId, products.get(0).getProductId(), "Id should match");
+        assertEquals(1, products.getProducts().size(), "Size should match");
+        assertEquals(withReductionId, products.getProducts().get(0).getProductId(), "Id should match");
     }
 
     @Test
@@ -122,11 +123,11 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.empty());
+        final Products products = productService.getProducts(Optional.empty());
 
-        assertEquals(firstId, products.get(0).getProductId(), "Id should match");
-        assertEquals(secondId, products.get(1).getProductId(), "Id should match");
-        assertEquals(thirdId, products.get(2).getProductId(), "Id should match");
+        assertEquals(firstId, products.getProducts().get(0).getProductId(), "Id should match");
+        assertEquals(secondId, products.getProducts().get(1).getProductId(), "Id should match");
+        assertEquals(thirdId, products.getProducts().get(2).getProductId(), "Id should match");
     }
 
     @Test
@@ -146,9 +147,9 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.empty());
+        final Products products = productService.getProducts(Optional.empty());
 
-        assertEquals(BasicColor.GREEN.getRgb(), products.get(0).getColorSwatches().get(0).getRgbColor(), "RGB should match");
+        assertEquals(BasicColor.GREEN.getRgb(), products.getProducts().get(0).getColorSwatches().get(0).getRgbColor(), "RGB should match");
     }
 
     @Test
@@ -168,9 +169,9 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.empty());
+        final Products products = productService.getProducts(Optional.empty());
 
-        assertEquals("£1.00", products.get(0).getNowPrice(), "Price should match");
+        assertEquals("£1.00", products.getProducts().get(0).getNowPrice(), "Price should match");
     }
 
     @Test
@@ -200,10 +201,10 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.empty());
+        final Products products = productService.getProducts(Optional.empty());
 
-        assertEquals("£10", products.get(0).getNowPrice(), "Price should match");
-        assertEquals("£11", products.get(1).getNowPrice(), "Price should match");
+        assertEquals("£10", products.getProducts().get(0).getNowPrice(), "Price should match");
+        assertEquals("£11", products.getProducts().get(1).getNowPrice(), "Price should match");
     }
 
     @Test
@@ -223,9 +224,9 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.empty());
+        final Products products = productService.getProducts(Optional.empty());
 
-        assertEquals("Was £11, now £9.00", products.get(0).getPriceLabel(), "Price label should match");
+        assertEquals("Was £11, now £9.00", products.getProducts().get(0).getPriceLabel(), "Price label should match");
     }
 
     @Test
@@ -245,9 +246,9 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.of(PriceLabelType.SHOW_WAS_NOW));
+        final Products products = productService.getProducts(Optional.of(PriceLabelType.SHOW_WAS_NOW));
 
-        assertEquals("Was £11, now £9.00", products.get(0).getPriceLabel(), "Price label should match");
+        assertEquals("Was £11, now £9.00", products.getProducts().get(0).getPriceLabel(), "Price label should match");
     }
 
     @Test
@@ -268,9 +269,9 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.of(PriceLabelType.SHOW_WAS_THEN_NOW));
+        final Products products = productService.getProducts(Optional.of(PriceLabelType.SHOW_WAS_THEN_NOW));
 
-        assertEquals("Was £11, then £10, now £9.00", products.get(0).getPriceLabel(), "Price label should match");
+        assertEquals("Was £11, then £10, now £9.00", products.getProducts().get(0).getPriceLabel(), "Price label should match");
     }
 
     @Test
@@ -291,9 +292,9 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.of(PriceLabelType.SHOW_WAS_THEN_NOW));
+        final Products products = productService.getProducts(Optional.of(PriceLabelType.SHOW_WAS_THEN_NOW));
 
-        assertEquals("Was £11, then £10, now £9.00", products.get(0).getPriceLabel(), "Price label should match");
+        assertEquals("Was £11, then £10, now £9.00", products.getProducts().get(0).getPriceLabel(), "Price label should match");
     }
 
     @Test
@@ -313,9 +314,9 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.of(PriceLabelType.SHOW_WAS_THEN_NOW));
+        final Products products = productService.getProducts(Optional.of(PriceLabelType.SHOW_WAS_THEN_NOW));
 
-        assertEquals("Was £11, now £9.00", products.get(0).getPriceLabel(), "Price label should match");
+        assertEquals("Was £11, now £9.00", products.getProducts().get(0).getPriceLabel(), "Price label should match");
     }
 
     @Test
@@ -335,9 +336,9 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.of(PriceLabelType.SHOW_PERC_DISCOUNT));
+        final Products products = productService.getProducts(Optional.of(PriceLabelType.SHOW_PERC_DISCOUNT));
 
-        assertEquals("50% off - now £5.00", products.get(0).getPriceLabel(), "Price label should match");
+        assertEquals("50% off - now £5.00", products.getProducts().get(0).getPriceLabel(), "Price label should match");
     }
 
     @Test
@@ -367,9 +368,9 @@ class ProductServiceTest {
 
         when(externalProductApiClient.getProducts()).thenReturn(externalProducts);
 
-        final List<Product> products = productService.getProducts(Optional.empty());
+        final Products products = productService.getProducts(Optional.empty());
 
-        final Product actualProduct = products.get(0);
+        final Product actualProduct = products.getProducts().get(0);
 
         assertEquals(productId, actualProduct.getProductId(), "Product ID should match");
         assertEquals(productTitle, actualProduct.getTitle(), "Title should match");

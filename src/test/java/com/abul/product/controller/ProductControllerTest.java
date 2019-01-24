@@ -2,9 +2,9 @@ package com.abul.product.controller;
 
 import com.abul.product.model.PriceLabelType;
 import com.abul.product.model.Product;
+import com.abul.product.model.Products;
 import com.abul.product.service.ProductService;
 import com.abul.product.service.ProductServiceException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -52,7 +52,7 @@ class ProductControllerTest {
     @Test
     @DisplayName("Get products when label type is not specified should return products with default setting")
     void getProductsWhenLabelTypeIsNotSpecifiedShouldReturnProductsWithDefaultSetting() throws Exception {
-        final List<Product> products = List.of(Product.builder().productId("id").build());
+        final Products products = Products.builder().products(List.of(Product.builder().productId("id").build())).build();
         when(productService.getProducts(Optional.empty())).thenReturn(products);
 
         final String responseText = this.mockMvc.perform(get(URL_PRODUCTS))
@@ -61,8 +61,7 @@ class ProductControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        final List<Product> productsActual = objectMapper.readValue(responseText, new TypeReference<List<Product>>() {
-        });
+        final Products productsActual = objectMapper.readValue(responseText, Products.class);
 
         assertEquals(products, productsActual, "Products should match");
     }
@@ -70,7 +69,8 @@ class ProductControllerTest {
     @Test
     @DisplayName("Get products when label type is specified should return products with label type")
     void getProductsWhenLabelTypeIsSpecifiedShouldReturnProductsWithLabelType() throws Exception {
-        final List<Product> products = List.of(Product.builder().productId("id").build());
+        final Products products = Products.builder().products(List.of(Product.builder().productId("id").build())).build();
+
         when(productService.getProducts(Optional.of(PriceLabelType.SHOW_WAS_THEN_NOW))).thenReturn(products);
 
         final String responseText = this.mockMvc.perform(get(URL_WITH_LABEL_TYPE, PriceLabelType.SHOW_WAS_THEN_NOW.getValue()))
@@ -79,8 +79,7 @@ class ProductControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        final List<Product> productsActual = objectMapper.readValue(responseText, new TypeReference<List<Product>>() {
-        });
+        final Products productsActual = objectMapper.readValue(responseText, Products.class);
 
         assertEquals(products, productsActual, "Products should match");
     }

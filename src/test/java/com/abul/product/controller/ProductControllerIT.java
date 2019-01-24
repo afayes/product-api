@@ -2,10 +2,10 @@ package com.abul.product.controller;
 
 import com.abul.product.model.PriceLabelType;
 import com.abul.product.model.Product;
+import com.abul.product.model.Products;
 import com.abul.product.model.external.ExternalPrice;
 import com.abul.product.model.external.ExternalProduct;
 import com.abul.product.service.ExternalProductApiClient;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -66,8 +66,7 @@ class ProductControllerIT {
                 .getResponse()
                 .getContentAsString();
 
-        final List<Product> products = objectMapper.readValue(responseText, new TypeReference<List<Product>>() {
-        });
+        final Products products = objectMapper.readValue(responseText, Products.class);
 
         assertNotNull(products, "Products should not be null");
     }
@@ -81,13 +80,12 @@ class ProductControllerIT {
                 .getResponse()
                 .getContentAsString();
 
-        final List<Product> products = objectMapper.readValue(responseText, new TypeReference<List<Product>>() {
-        });
+        final Products products = objectMapper.readValue(responseText, Products.class);
 
-        final Set<String> reducedIds = products.stream().map(Product::getProductId).collect(Collectors.toSet());
-        final Set<String> expectedRedudcedIds = getReducedIds();
+        final Set<String> reducedIds = products.getProducts().stream().map(Product::getProductId).collect(Collectors.toSet());
+        final Set<String> expectedReducedIds = getReducedIds();
 
-        assertEquals(expectedRedudcedIds, reducedIds, "Ids should match");
+        assertEquals(expectedReducedIds, reducedIds, "Ids should match");
     }
 
     @Test
@@ -99,10 +97,9 @@ class ProductControllerIT {
                 .getResponse()
                 .getContentAsString();
 
-        final List<Product> products = objectMapper.readValue(responseText, new TypeReference<List<Product>>() {
-        });
+        final Products products = objectMapper.readValue(responseText, Products.class);
 
-        final List<String> ids = products.stream().map(Product::getProductId).collect(Collectors.toList());
+        final List<String> ids = products.getProducts().stream().map(Product::getProductId).collect(Collectors.toList());
         final List<String> idsWithHighestReductionFirst = getIdsWithHighestReductionFirst();
 
         assertEquals(idsWithHighestReductionFirst, ids, "Ids should match");
@@ -124,10 +121,9 @@ class ProductControllerIT {
                 .getResponse()
                 .getContentAsString();
 
-        final List<Product> products = objectMapper.readValue(responseText, new TypeReference<List<Product>>() {
-        });
+        final Products products = objectMapper.readValue(responseText, Products.class);
 
-        products.stream().forEach(product -> {
+        products.getProducts().stream().forEach(product -> {
             assertTrue(product.getPriceLabel().matches("Was .*, now .*"));
         });
     }
@@ -141,10 +137,9 @@ class ProductControllerIT {
                 .getResponse()
                 .getContentAsString();
 
-        final List<Product> products = objectMapper.readValue(responseText, new TypeReference<List<Product>>() {
-        });
+        final Products products = objectMapper.readValue(responseText, Products.class);
 
-        products.stream().forEach(product -> {
+        products.getProducts().stream().forEach(product -> {
             assertTrue(product.getPriceLabel().matches("Was .*, now .*"), "Pattern should match");
         });
     }
@@ -158,10 +153,9 @@ class ProductControllerIT {
                 .getResponse()
                 .getContentAsString();
 
-        final List<Product> products = objectMapper.readValue(responseText, new TypeReference<List<Product>>() {
-        });
+        final Products products = objectMapper.readValue(responseText, Products.class);
 
-        products.stream().forEach(product -> {
+        products.getProducts().stream().forEach(product -> {
             assertTrue(product.getPriceLabel().matches("Was .*,( then .*)? now .*"), "Pattern should match");
         });
     }
@@ -175,10 +169,9 @@ class ProductControllerIT {
                 .getResponse()
                 .getContentAsString();
 
-        final List<Product> products = objectMapper.readValue(responseText, new TypeReference<List<Product>>() {
-        });
+        final Products products = objectMapper.readValue(responseText, Products.class);
 
-        products.stream().forEach(product -> {
+        products.getProducts().stream().forEach(product -> {
             assertTrue(product.getPriceLabel().matches(".* off - now .*"), "Pattern should match");
         });
     }

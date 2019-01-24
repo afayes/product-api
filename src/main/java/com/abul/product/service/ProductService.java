@@ -45,22 +45,24 @@ public class ProductService {
      * Get products that have a price reduction and show highest product with highest reduction first.
      *
      * @param priceLabel the price label type
-     * @return products
+     * @return {@link Products}
      * @throws {@link ProductServiceException} if unable to retrieve products from remote API
      */
-    public List<Product> getProducts(final Optional<PriceLabelType> priceLabel) {
-        final ExternalProducts products;
+    public Products getProducts(final Optional<PriceLabelType> priceLabel) {
+        final ExternalProducts externalProducts;
         try {
-            products = externalProductApiClient.getProducts();
+            externalProducts = externalProductApiClient.getProducts();
         } catch (final Exception e) {
             throw new ProductServiceException("Unable to retrieve products from API", e);
         }
 
-        return products.getProducts().stream()
+        final List<Product> products = externalProducts.getProducts().stream()
                 .filter(externalProduct -> getPriceReduction(externalProduct.getPrice()) != 0)
                 .sorted(this::comparePriceReduction)
                 .map(externalProduct -> mapExternalProductToProduct(externalProduct, priceLabel))
                 .collect(Collectors.toList());
+
+        return Products.builder().products(products).build();
     }
 
     private int comparePriceReduction(final ExternalProduct externalProduct1, final ExternalProduct externalProduct2) {

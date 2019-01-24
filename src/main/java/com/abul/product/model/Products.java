@@ -8,21 +8,13 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * Product model.
+ * Products model.
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Product {
+public class Products {
 
-    private String productId;
-
-    private String title;
-
-    private List<ColorSwatch> colorSwatches;
-
-    private String nowPrice;
-
-    private String priceLabel;
+    private List<Product> products;
 }
